@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      .wrapper {
+        /* display: flex;
+        justify-content: center;
+        align-items: center;*/
+        /* min-height: 100vh; */
+        background-color: #ffe;
+      }
+      .box {
+        border: 1px dashed red;
+        width: 200px;
+        height: 100px;
+        background-color: pink;
+
+        /* overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; */
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+
+        /* position: absolute; */
+        /* margin-left: 50%; */
+        /* margin-top: 50%; */
+        /* left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%); */
+      }
+      .middle {
+        /* display: none; */
+        /* visibility: hidden; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="box">box1</div>
+      <div class="box middle">
+        box2 如何用 css 或 js 实现多行文本溢出省略效果，考虑兼容性如何用 css 或
+        js 实现多行文本溢出省略效果，考虑兼容性如何用 css 或 js
+        实现多行文本溢出省略效果，考虑兼容性如何用 css 或 js
+        实现多行文本溢出省略效果，考虑兼容性
+      </div>
+      <div class="box">box3</div>
+    </div>
+  </body>
+</html>

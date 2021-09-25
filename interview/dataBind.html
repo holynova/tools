@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>input</h3>
+    <input type="text" id="input" />
+    <div>
+      result:
+      <div id="output"></div>
+    </div>
+    <script>
+      const $ = document.querySelector.bind(document);
+      function init(data) {
+        Object.defineProperty(data, "value", {
+          get: function () {
+            return $("#input").value;
+          },
+          set: function (newValue) {
+            $("#input").value = newValue;
+            $("#output").innerHTML = newValue;
+          },
+        });
+        return data;
+      }
+
+      function initWithProxy(data) {
+        return new Proxy(data, {
+          get(target, prop, receive) {
+            if (prop === "value") {
+              return $("#input").value;
+
+              // return target.value;
+            }
+          },
+          set(target, prop, newValue) {
+            if (prop === "value") {
+              $("#input").value = newValue;
+              $("#output").innerHTML = newValue;
+            }
+          },
+        });
+      }
+
+      function main() {
+        let data = { value: "" };
+        data = initWithProxy(data);
+        $("#input").addEventListener("input", function (e) {
+          data.value = e.target.value;
+        });
+      }
+      main();
+    </script>
+  </body>
+</html>
