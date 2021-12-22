@@ -39,16 +39,19 @@ class MyPromise {
     // this
     // resolve, reject;
   }
-  then(resolve, reject) {
-    return new MyPromise((resolveFunc, rejectFunc) => {
+  then(rs1, rj1) {
+    return new MyPromise((rs2, rj2) => {
       this.queue.push((data) => {
-        let res = resolve(this.data);
+        let res = rs1(this.data);
         if (res instanceof MyPromise) {
-          res.then(resolveFunc);
+          log("返回promise");
+          res.then(rs2);
         } else {
-          resolveFunc(res);
+          log("返回 普通");
+          rs2(res);
         }
       });
+      log("queue", this.queue.length);
     });
   }
 }
@@ -81,6 +84,30 @@ function main() {
       }, 1000);
     });
   });
+
+  const p3 = new MyPromise((rs) => {
+    rs(1);
+  })
+    .then((val) => {
+      log(val + 1);
+      return val + 1;
+    })
+    .then((val) => {
+      log(val + 1);
+      return val + 1;
+    })
+    .then((val) => {
+      log(val + 1);
+      return val + 1;
+    })
+    .then((val) => {
+      log(val + 1);
+      return val + 1;
+    })
+    .then((val) => {
+      log(val + 1);
+      return val + 1;
+    });
 }
 
 main();
