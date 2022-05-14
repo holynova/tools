@@ -18,6 +18,8 @@
   "homepage": "https://github.com/holynova/tools#readme",
   "dependencies": {
     "axios": "^0.21.1",
-    "dayjs": "^1.10.7"
+    "dayjs": "^1.10.7",
+    "image-to-pdf": "^1.0.0",
+    "images-to-pdf": "^1.0.3"
   }
 }
